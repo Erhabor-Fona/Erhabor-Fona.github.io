@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Map</title>
+<meta name="description" content="Memory Map is a spatial recall game. Remember where the numbers were, then tap them back in order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#F2F5F7;
+    --ink-dim:#8C97A3;
+    --well:#171C23;
+    --bg:#070A0E;
+    --amber:#F5BA4C;
+    --cyan:#5AD1DE;
+    --line:#1E252E;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 90% at 18% 0%, #0E141C 0%, var(--bg) 62%);
+    color:var(--ink);
+    font:400 17px/1.65 "Space Grotesk", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:37rem;margin:0 auto;padding:clamp(2.5rem,8vw,6rem) 1.5rem 4rem}
+
+  /* Hero: the board itself. Two amber and one cyan token lit, as on the
+     app icon, so the page and the launcher read as the same object. */
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;width:9.5rem;margin-bottom:2.75rem}
+  .cell{aspect-ratio:1;border-radius:50%;background:var(--well)}
+  .cell.amber{background:var(--amber);box-shadow:0 0 28px -4px rgba(245,186,76,.55)}
+  .cell.cyan{background:var(--cyan);box-shadow:0 0 28px -4px rgba(90,209,222,.5)}
+  /* One orchestrated moment: the lit cells arrive as they do in a round. */
+  @media (prefers-reduced-motion:no-preference){
+    .cell.amber,.cell.cyan{animation:light .5s backwards}
+    .cell:nth-child(1){animation-delay:.15s}
+    .cell:nth-child(3){animation-delay:.35s}
+    .cell:nth-child(5){animation-delay:.55s}
+    .cell:nth-child(9){animation-delay:.75s}
+  }
+  @keyframes light{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+
+  h1{font-size:clamp(2.6rem,9vw,3.9rem);line-height:.98;letter-spacing:-.03em;font-weight:700;margin:0}
+  h1 .map{color:var(--amber);display:block}
+  .lede{font-size:1.2rem;color:var(--ink-dim);margin:1.5rem 0 0;max-width:30rem}
+
+  h2{font-size:1.15rem;font-weight:500;letter-spacing:-.01em;margin:3.25rem 0 .75rem}
+  p{margin:0 0 1rem;max-width:34rem}
+  a{color:var(--cyan);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+  hr{border:0;border-top:1px solid var(--line);margin:3.5rem 0 0}
+  footer{margin-top:1.5rem;color:var(--ink-dim);font-size:.95rem}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="board" aria-hidden="true">
+    <div class="cell amber"></div><div class="cell"></div><div class="cell cyan"></div>
+    <div class="cell"></div><div class="cell amber"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell cyan"></div>
+  </div>
+
+  <h1>Memory<span class="map">Map</span></h1>
+  <p class="lede">Remember where the numbers were. Tap them back in order. Three attempts per run, then we rate you.</p>
+
+  <h2>How it works</h2>
+  <p>Numbers appear across the board, then vanish. Tap them back in order from memory. Each stage adds another number and takes away a little time. Clear enough stages and you earn a badge named after a thinker, from Curie to Spinoza.</p>
+  <p>Every run ends with a cognitive score out of 1000, and you can put it on a global or country leaderboard under a name you choose.</p>
+
+  <h2>Support</h2>
+  <p>Something broken, a score that looks wrong, or a name you want released? Email <a href="mailto:support.memory.map@gmail.com">support.memory.map@gmail.com</a> and describe what happened. If it involves the leaderboard, include the name you play under.</p>
+
+  <h2>Privacy</h2>
+  <p>Memory Map asks for no account and no personal details. <a href="privacy.html">Read the privacy policy</a> for what is stored and how to have it deleted.</p>
+
+  <hr>
+  <footer>Memory Map is made by Blanq Technologies.</footer>
+</main>
+</body>
+</html>
